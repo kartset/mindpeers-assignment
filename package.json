@@ -6,9 +6,17 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.0.2",
+    "flickr-sdk": "^3.10.0",
     "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-modal-image": "^2.5.0",
     "react-scripts": "4.0.3",
+    "react-search-field": "^2.0.1",
+    "react-simple-infinite-loading": "^1.1.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
