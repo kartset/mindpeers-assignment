@@ -6,7 +6,6 @@ import {Navbar,Nav} from 'react-bootstrap';
 
 export default function App() {
   const [searchText, setSearchText] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
 
   function onChange(v,e) {
     //console.log(v)
@@ -14,9 +13,9 @@ export default function App() {
       //searchText: v 
     //});
     setSearchText(v);
-    setPageNumber(1);
+
     //console.log(searchText)
-  }
+  } 
   return (
     <div id="app">
       <Navbar bg="light" expand="lg" fixed="top" className="App-header center-navbar">

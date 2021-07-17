@@ -12,7 +12,8 @@ export default class Photos extends Component {
     this.state = {
       url: [],
       name: [],
-      page : 1,
+      pageRecent : 1,
+      pageSearch: 1,
       perPage : 150,
       show: false,
       currimg: "",
@@ -31,10 +32,10 @@ export default class Photos extends Component {
     })
   };
   addmore = () => {
-    this.setState({
-      page: this.state.page++
-    })
     if(this.props.searchText) {
+      this.setState({
+        pageSearch: this.state.pageSearch+1
+      })
       axios.get("https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=446efc4ee28fd1300964acd1ab1bb110&tags="+this.props.searchText+"&text="+this.props.searchText+"&per_page="+this.state.perPage+"&page="+this.state.page+"&format=json&nojsoncallback=1")
       .then((res) => {
         console.log(this.props.searchText);
@@ -50,11 +51,13 @@ export default class Photos extends Component {
             name: [...this.state.name,element['title']]
           })
         })
-
       })
     }
     else if(this.props.searchText === "") {
       console.log(this.props.searchText);
+      this.setState({
+        pageRecent: this.state.pageRecent+1
+      })
       axios.get("https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=446efc4ee28fd1300964acd1ab1bb110&per_page=150&page=1&format=json&nojsoncallback=1")
       .then((res) => {
         res.data['photos']['photo'].forEach(element => {
@@ -112,7 +115,9 @@ export default class Photos extends Component {
     }
   }
   closeLightbox = () => {
-    this.state.open = true;
+    this.setState({
+      open: true
+    })
   };
   render() {
     return (
@@ -126,14 +131,14 @@ export default class Photos extends Component {
           <Container>
         <Row>
         {this.state.url.map((urla, index) => (
-          <Col md={3}>
-            <div class="child">
-            <div class="card" >
+          <Col key={index} md={3}>
+            <div className="child">
+            <div className="card" >
             <button onClick={ (e) => this.handleShow(e, index)}>
-              <img class="card-img-top" src={urla}  alt='from Flicker' width= "100% "height= "150vw" />
+              <img className="card-img-top" src={urla}  alt='from Flicker' width= "100% "height= "150vw" />
             </button>                
-            <div class="card-body">
-              <p class="card-text">
+            <div className="card-body">
+              <p className="card-text">
                 {
                   this.state.name[index]
                 }
@@ -151,7 +156,7 @@ export default class Photos extends Component {
         <Modal.Header >
           <Modal.Title>{this.state.currname}</Modal.Title>
         </Modal.Header>
-        <Modal.Body><img class="img-fluid" src={this.state.currimg}  alt='from Flicker' /></Modal.Body>
+        <Modal.Body><img className="img-fluid" src={this.state.currimg}  alt='from Flicker' /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.handleClose}>
             Close
