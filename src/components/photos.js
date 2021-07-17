@@ -76,7 +76,7 @@ export default class Photos extends Component {
     
   }
 
-  componentDidMount(props) {
+  componentDidMount() {
     if(this.props.searchText) {
       axios.get("https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=446efc4ee28fd1300964acd1ab1bb110&tags="+this.props.searchText+"&text="+this.props.searchText+"&per_page="+this.state.perPage+"&page="+this.state.page+"&format=json&nojsoncallback=1")
       .then((res) => {
