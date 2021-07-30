@@ -35,10 +35,14 @@ export class App extends Component {
           >
             <Container>
               <Row>
-                <Col className="nav justify-content-center"><Navbar.Brand href="#"><h2>Search Photos</h2></Navbar.Brand></Col>
+                <Col className="nav justify-content-center"><Navbar.Brand href="#"><h1>Search Photos</h1></Navbar.Brand></Col>
               </Row>
               <Row>
-                <Col><input type='text' size="50" className="form-control col-lg-8" type="search" placeholder="Search..." aria-label="Search" className="searchField" onChange={(e) => this.onChange(e)} /></Col>
+                <Col>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input type='text' size="50" className="form-control col-lg-8" type="search" placeholder="Search..." aria-label="Search" className="searchField" onChange={(e) => this.onChange(e)} />
+                  </form>
+                </Col>
               </Row>
             </Container>
           </Nav>

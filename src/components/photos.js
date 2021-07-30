@@ -140,7 +140,7 @@ export default class Photos extends Component {
           dataLength={this.state.url.length}
           next= {this.addmore}
           hasMore={true}
-          loader= {<h4>Loading ...</h4>}
+          loader= {<div class="text-center"><p class="spinner-border" role="status"></p></div>}
         >
           <Container>
         <Row>
