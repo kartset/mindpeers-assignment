@@ -1,24 +1,32 @@
 import './App.css';
 import Photos from './components/photos';
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import SearchField from "react-search-field";
 import {Navbar,Nav} from 'react-bootstrap';
 
-export default function App() {
-  const [searchText, setSearchText] = useState("");
 
-  function onChange(v,e) {
-    //console.log(v)
-    //this.setState({ 
-      //searchText: v 
-    //});
-    setSearchText(v);
 
-    //console.log(searchText)
+export class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      searchText: '' //search text
+    }
+    this.onChange = this.onChange.bind(this);
+  }
+
+  //change handler function for search bar query change
+  onChange(v,e) {
+    this.setState({ 
+      searchText: v 
+    });
   } 
-  return (
-    <div id="app">
-      <Navbar bg="light" expand="lg" fixed="top" className="App-header center-navbar">
+
+  render() {
+    return (
+      <div id="app">
+      <Navbar bg="light" expand="lg" fixed="top" className="App-header center-navbar navbar-dark bg-dark">
         <Navbar.Brand href="#">Search Photos</Navbar.Brand>
           <Nav
             className="mr-auto my-2 my-lg-0"
@@ -30,13 +38,17 @@ export default function App() {
             <SearchField
               placeholder="Search..."
               classNames="searchField"
-              onChange={onChange}
+              onChange={this.onChange}
             />
           </Nav>
       </Navbar>
       <div className="photos">
-        <Photos key={searchText} searchText={searchText} />
+      <Photos key={this.state.searchText} searchText={this.state.searchText} /> {/*with the use of key it renders everytime it changes so component will mount works for search as well*/}
+      {/*<Photos searchText={this.state.searchText} />*/} {/* can work with getDerivedStateFromProps but having trouble re rendering it*/}
       </div> 
-    </div>
-  )
+      </div>
+    )
+  }
 }
+
+export default App;

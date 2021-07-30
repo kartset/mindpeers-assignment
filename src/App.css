@@ -27,3 +27,10 @@
 .photos{
   margin-top: 5%;
 }
+
+.center-align {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
